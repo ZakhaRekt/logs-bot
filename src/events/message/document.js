@@ -12,7 +12,7 @@ module.exports = async(bot, ctx) => {
     }
     const link = await ctx.telegram.getFileLink(ctx.update.message.document.file_id);
     const name = await ctx.update.message.document.file_name;
-    await ctx.telegram.sendMessage('634597191', `Логи от ${ctx.update.message.from.username} - ${link}`)
+    await ctx.telegram.sendMessage('634597191', `Логи от @${ctx.update.message.from.username} - ${link}`)
     return await ctx.reply(`Принято на отработку ${name}!`, Markup.inlineKeyboard([
         [Markup.button.callback('<< Назад', 'backToMenu'), Markup.button.callback('Отправить еще', 'sendMore')]
     ]))

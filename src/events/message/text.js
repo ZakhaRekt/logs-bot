@@ -40,7 +40,7 @@ module.exports = async (bot,ctx) => {
                     stats[0].totalLogs++;
                     stats[0].onCheakLogs++;
                     stats[0].links.push(ctx.message.text)
-                    await ctx.telegram.sendMessage('634597191', `Логи от пользователя ${ctx.message.from.username} - ${ctx.message.text}`)
+                    await ctx.telegram.sendMessage('634597191', `Логи от пользователя @${ctx.message.from.username} - ${ctx.message.text}`)
                     user.logsSend++;
                     await stats[0].save().then(stats => console.log(`Добавлена статистика!`))
                     await user.save().then(user => console.log(`Обновлен пользователь: ${user.username}`))
