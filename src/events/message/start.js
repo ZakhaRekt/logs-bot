@@ -3,10 +3,6 @@ const User = require('../../data/user');
 const menu = require('../../../menu')
 module.exports = async (bot,ctx) => {
     if(ctx.message.from.is_bot) return;
-    if(ctx.message.chat.type != 'private') {
-        await ctx.replyWithPhoto({url: 'https://horrorzone.ru/uploads/_pages3/96827/penis_duenn_normalebrille.png'})
-        return await ctx.telegram.leaveChat(ctx.message.chat.id);
-    }
     User.findOne({ID: ctx.from.id}, async (err, user) => {
         if(err) console.log(err)
         if(!user) {

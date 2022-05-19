@@ -2,7 +2,6 @@ const { Telegraf, Markup } = require('telegraf');
 
 
 module.exports = async(bot, ctx) => {
-    await ctx.deleteMessage()
     if (
     !ctx.update.message.document.mime_type.includes('rar') && 
     !ctx.update.message.document.mime_type.includes('zip') &&
