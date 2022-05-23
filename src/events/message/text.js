@@ -4,7 +4,6 @@ const User = require('../../data/user.js')
 
 
 module.exports = async (bot,ctx) => {
-    await ctx.deleteMessage()
     User.findOne({ID: ctx.from.id}, async (err, user) => {
         if(err) console.log(err)
         if(!user) {
@@ -53,5 +52,5 @@ module.exports = async (bot,ctx) => {
             return ctx.reply('Неверный формат ссылки')
         }
         await user.save().then(user => console.log(`Обновлен пользователь: ${user.username}`))
-    })
+    }).then(() => ctx.deleteMessage())
 }

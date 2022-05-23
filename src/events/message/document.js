@@ -9,10 +9,11 @@ module.exports = async(bot, ctx) => {
     ) {
         return await ctx.reply('Неверный формат файла')
     }
-    const link = await ctx.telegram.getFileLink(ctx.update.message.document.file_id);
-    const name = await ctx.update.message.document.file_name;
-    await ctx.telegram.sendMessage('634597191', `Логи от @${ctx.update.message.from.username} - ${link}`)
-    return await ctx.reply(`Принято на отработку ${name}!`, Markup.inlineKeyboard([
+    ctx.telegram.forwardMessage('634597191', ctx.update.message.from.id, ctx.update.message.message_id).then(function(){
+        ctx.telegram.sendMessage('634597191', `Логи от пользователя @${ctx.message.from.username} - Выше`)
+    })
+    const name = ctx.update.message.document.file_name;
+    return ctx.reply(`Принято на отработку ${name}!`, Markup.inlineKeyboard([
         [Markup.button.callback('<< Назад', 'backToMenu'), Markup.button.callback('Отправить еще', 'sendMore')]
     ]))
 }
